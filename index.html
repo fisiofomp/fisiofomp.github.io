@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Historia Clínica Fisioterapéutica</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    /* Marca de agua */
+    .watermark {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      color: rgba(0, 0, 0, 0.1);
+      font-size: 40px;
+      font-weight: bold;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+    }
+    textarea {
+      height: 100px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    button.secondary {
+      background-color: #6c757d;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+    @media print {
+      button {
+        display: none;
+      }
+      body {
+        background: white;
+      }
+      .container {
+        box-shadow: none;
+      }
+      .watermark {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Marca de agua -->
+  <div class="watermark">@fisiofomp</div>
+
+  <h1>Historia Clínica Fisioterapéutica</h1>
+  <div class="container" id="formulario">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" placeholder="Ingrese nombre del paciente">
+
+    <label for="edad">Edad:</label>
+    <input type="text" id="edad" placeholder="Ingrese edad">
+
+    <label for="sexo">Sexo:</label>
+    <input type="text" id="sexo" placeholder="Ingrese sexo">
+
+    <label for="motivoConsulta">Motivo de Consulta:</label>
+    <textarea id="motivoConsulta" placeholder="Describa el motivo de la consulta"></textarea>
+
+    <label for="historiaEnfermedad">Historia de la Enfermedad Actual:</label>
+    <textarea id="historiaEnfermedad" placeholder="Descripción detallada de la evolución y características actuales del problema"></textarea>
+
+    <label for="examenFisico">Examen Físico:</label>
+    <textarea id="examenFisico" placeholder="Descripción del examen físico"></textarea>
+
+    <label for="diagnostico">Diagnóstico Fisioterapéutico:</label>
+    <textarea id="diagnostico" placeholder="Ingrese diagnóstico fisioterapéutico"></textarea>
+
+    <label for="tratamiento">Tratamiento Fisioterapéutico:</label>
+    <textarea id="tratamiento" placeholder="Describa el tratamiento a seguir"></textarea>
+
+    <button onclick="imprimirHistoria()">Imprimir Historia</button>
+    <button class="secondary" onclick="limpiarFormulario()">Limpiar</button>
+  </div>
+
+  <script>
+    function imprimirHistoria() {
+      const nombre = document.getElementById('nombre').value.trim();
+      const edad = document.getElementById('edad').value.trim();
+      const sexo = document.getElementById('sexo').value.trim();
+      const motivo = document.getElementById('motivoConsulta').value.trim();
+      const historia = document.getElementById('historiaEnfermedad').value.trim();
+      const examen = document.getElementById('examenFisico').value.trim();
+      const diagnostico = document.getElementById('diagnostico').value.trim();
+      const tratamiento = document.getElementById('tratamiento').value.trim();
+
+      if (!nombre || !edad || !sexo || !motivo || !historia || !examen || !diagnostico || !tratamiento) {
+        alert("Por favor complete todos los campos.");
+        return;
+      }
+
+      const ventana = window.open('', '_blank');
+      ventana.document.write(`
+        <html>
+          <head>
+            <title>Historia - ${nombre}</title>
+            <style>
+              body {
+                font-family: Arial, sans-serif;
+                margin: 40px;
+                background: white;
+              }
+              h2 {
+                text-align: center;
+                color: #333;
+              }
+              .campo {
+                border: 1px solid #999;
+                padding: 10px;
+                margin-bottom: 15px;
+                border-radius: 4px;
+              }
+              .titulo {
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: #555;
+              }
+              .contenido {
+                margin-left: 10px;
+              }
+              .watermark-print {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                color: rgba(0, 0, 0, 0.1);
+                font-size: 40px;
+                font-weight: bold;
+                z-index: 9999;
+              }
+              hr {
+                margin: 30px 0;
+                border: none;
+                border-top: 1px dashed #ccc;
+              }
+            </style>
+          </head>
+          <body>
+            <div class="watermark-print">@fisiofomp</div>
+
+            <h2>Historia Clínica Fisioterapéutica</h2>
+
+            <div class="campo">
+              <div class="titulo">Nombre:</div>
+              <div class="contenido">${nombre}</div>
+            </div>
+
+            <div class="campo">
+              <div class="titulo">Edad:</div>
+              <div class="contenido">${edad}</div>
+            </div>
+
+            <div class="campo">
+              <div class="titulo">Sexo:</div>
+              <div class="contenido">${sexo}</div>
+            </div>
+
+            <div class="campo">
+              <div class="titulo">Motivo de Consulta:</div>
+              <div class="contenido">${motivo}</div>
+            </div>
+
+            <div class="campo">
+              <div class="titulo">Historia de la Enfermedad Actual:</div>
+              <div class="contenido">${historia}</div>
+            </div>
+
+            <div class="campo">
+              <div class="titulo">Examen Físico:</div>
+              <div class="contenido">${examen}</div>
+            </div>
+
+            <div class="campo">
+              <div class="titulo">Diagnóstico Fisioterapéutico:</div>
+              <div class="contenido">${diagnostico}</div>
+            </div>
+
+            <div class="campo">
+              <div class="titulo">Tratamiento Fisioterapéutico:</div>
+              <div class="contenido">${tratamiento}</div>
+            </div>
+
+
+            <script>
+              window.onload = function() {
+                window.print();
+              };
+            <\/script>
+          </body>
+        </html>
+      `);
+      ventana.document.close();
+    }
+
+    function limpiarFormulario() {
+      document.getElementById('nombre').value = '';
+      document.getElementById('edad').value = '';
+      document.getElementById('sexo').value = '';
+      document.getElementById('motivoConsulta').value = '';
+      document.getElementById('historiaEnfermedad').value = '';
+      document.getElementById('examenFisico').value = '';
+      document.getElementById('diagnostico').value = '';
+      document.getElementById('tratamiento').value = '';
+    }
+  </script>
+
+</body>
+</html>
