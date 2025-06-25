@@ -1,0 +1,21 @@
+{
+  "name": "Historia Clínica Fisioterapéutica",
+  "short_name": "FisioFOMP",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "description": "Aplicación para registrar historias clínicas fisioterapéuticas.",
+  "theme_color": "#28a745",
+  "icons": [
+    {
+      "src": "icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
