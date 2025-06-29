@@ -102,6 +102,9 @@
     <label for="sexo">Sexo:</label>
     <input type="text" id="sexo" placeholder="Ingrese sexo">
 
+<label for="Ocupacion">Ocupacion:</label>
+    <input type="text" id="ocupacion" placeholder="Ingrese Ocupación">
+
     <label for="motivoConsulta">Motivo de Consulta:</label>
     <textarea id="motivoConsulta" placeholder="Describa el motivo de la consulta"></textarea>
 
@@ -126,6 +129,7 @@
       const nombre = document.getElementById('nombre').value.trim();
       const edad = document.getElementById('edad').value.trim();
       const sexo = document.getElementById('sexo').value.trim();
+      const ocupacion = document.getElementById('ocupacion').value.trim();
       const motivo = document.getElementById('motivoConsulta').value.trim();
       const historia = document.getElementById('historiaEnfermedad').value.trim();
       const examen = document.getElementById('examenFisico').value.trim();
@@ -200,6 +204,11 @@
             <div class="campo">
               <div class="titulo">Sexo:</div>
               <div class="contenido">${sexo}</div>
+            </div>
+
+  <div class="campo">
+              <div class="titulo">Ocupacion:</div>
+              <div class="contenido">${ocupacion}</div>
             </div>
 
             <div class="campo">
